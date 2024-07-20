@@ -4,6 +4,8 @@ from .tools import gcid_hash_file
 import requests
 from drawtable import Table
 
+user_agent = 'XLPlayer/3.1.1 (com.xunlei.XLPlayer; build:65742; macOS 15.0.0) Alamofire/5.4.3'
+
 
 def get_subs(gid: str, max_retry_times: int = 0):
     """
@@ -28,7 +30,7 @@ def get_subs(gid: str, max_retry_times: int = 0):
     result = None
     if max_retry_times <= 0:
         while True:
-            res = requests.get(url)
+            res = requests.get(url, headers={'User-Agent': user_agent})
             if res.status_code == 200:
                 result = res.json()['data']
                 break
@@ -47,9 +49,7 @@ def search(fp):
 
 
 def get_url(url):
-    response = urllib.request.urlopen(url)
-    data = response.read()
-    return data
+    return requests.get(url, headers={'User-Agent': user_agent}).content
 
 
 def main():
