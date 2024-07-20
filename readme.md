@@ -19,6 +19,7 @@ options:
 ```
 
 ```
+$ thunder-subtitle ./Into.the.Wild.2007.BluRay.1080p.x265.10bit-MiniHD.mkv
  Index  Rate  Votes  Language   Name                                                    URL
  1      5     69.53  简体&英语  2007：荒野生存.ass                                      https://subtitle.v.geilijiasu.com/50/CA/50CA417E385496D90600EEDD9ADD1E3ACFE1E153.ass
  2      5     67.63  简体       Into the Wild.srt                                       https://subtitle.v.geilijiasu.com/15/45/1545F117819680BF10A1273632C04BBCE0A22CD2.srt
