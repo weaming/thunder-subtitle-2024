@@ -12,7 +12,7 @@ gh_repo = 'https://github.com/weaming/thunder-subtitle-2024'
 
 setup(
     name='thunder-subtitle',  # Required
-    version='2024.7.20.1',  # Required
+    version='2024.7.23.1',  # Required
     description='下载迅雷看看字幕',  # Required
     url=gh_repo,  # Optional
     author='weaming',  # Optional

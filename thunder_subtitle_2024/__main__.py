@@ -1,10 +1,11 @@
-import urllib.request
+import os
 from .tools import gcid_hash_file
 
 import requests
 from drawtable import Table
 
 user_agent = 'XLPlayer/3.1.1 (com.xunlei.XLPlayer; build:65742; macOS 15.0.0) Alamofire/5.4.3'
+DEBUG = os.getenv('DEBUG', False)
 
 
 def get_subs(gid: str, max_retry_times: int = 0):
@@ -45,7 +46,7 @@ def get_subs(gid: str, max_retry_times: int = 0):
 
 def search(fp):
     gid = gcid_hash_file(fp)
-    return get_subs(gid, 1000)
+    return get_subs(gid, 10)
 
 
 def get_url(url):
@@ -61,10 +62,12 @@ def main():
     args = parser.parse_args()
 
     subs = search(args.path)
+    if DEBUG:
+        print(subs)
     if subs is None:
         print("超过最大重试次数后仍然未能获得正确结果")
     else:
-        subs.sort(key=lambda x: x['star'], reverse=True)
+        subs.sort(key=lambda x: x['fingerprintf_score'], reverse=True)
 
         if args.index:
             sub = subs[args.index - 1]
@@ -84,7 +87,7 @@ def main():
             for i, x in enumerate(subs, start=1):
                 row = [
                     str(i),
-                    x['star'],
+                    x.get('star', ''),
                     str(x['fingerprintf_score']),
                     ' '.join(x['languages']),
                     x['name'],
